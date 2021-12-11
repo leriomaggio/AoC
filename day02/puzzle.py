@@ -1,6 +1,5 @@
 """ -- Advent of Code 2021 --
-Day 01:
-https://adventofcode.com/2021/day/1
+Day 02, https://adventofcode.com/2021/day/2
 
 Notes on Solutions:
 - Part 1: I've used [`getattr`](https://docs.python.org/3/library/functions.html#getattr) to dynamically
