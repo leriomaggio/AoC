@@ -1,6 +1,6 @@
-# AoC2021
+# Advent of Code 2021
 
-My attempts to Advent of Code 2021
+My attempts to [Advent of Code](https://adventofcode.com/2021) [**2021**](https://adventofcode.com/2021)
 
 _Overall unwritten rule_: "Try to solve each challenge using only Python [`built-in`](https://docs.python.org/3/library/functions.html)"
 
