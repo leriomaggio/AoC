@@ -1,6 +1,9 @@
 # AoC2021
 
-My Attempt to Advent of Code 2021
+My attempts to Advent of Code 2021
+
+_Overall unwritten rule_: "Try to solve each challenge using only Python [`built-in`](https://docs.python.org/3/library/functions.html)"
+
 
 ![](https://img.shields.io/badge/day%20📅-11-blue)
 ![](https://img.shields.io/badge/stars%20⭐-22-yellow)
