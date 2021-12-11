@@ -4,6 +4,7 @@ My attempts to Advent of Code 2021
 
 _Overall unwritten rule_: "Try to solve each challenge using only Python [`built-in`](https://docs.python.org/3/library/functions.html)"
 
+[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 
 ![](https://img.shields.io/badge/day%20📅-11-blue)
 ![](https://img.shields.io/badge/stars%20⭐-22-yellow)
