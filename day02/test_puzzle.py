@@ -5,6 +5,7 @@ from pathlib import Path
 from pytest import fixture
 
 from puzzle import load, part1, part2
+from puzzle import __day__, __title__
 
 LOGGER = logging.getLogger(__name__)
 
@@ -15,6 +16,8 @@ up 3
 down 8
 forward 2
 """
+
+LOGGER.warning(f"Test AoC21 Day {__day__}: {__title__}")
 
 
 class AoCTest:
