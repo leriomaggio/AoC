@@ -2,11 +2,12 @@
 
 My attempts to [Advent of Code](https://adventofcode.com/2021) [**2021**](https://adventofcode.com/2021)
 
-_Unwritten rule_: "Solve each challenge using only [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/) [`built-in`](https://docs.python.org/3/library/functions.html)"
+_Unwritten rule_: "Solve each challenge using only Python [`built-in`](https://docs.python.org/3/library/functions.html)"
 
 ![](https://img.shields.io/badge/day%20📅-11-blue)
 ![](https://img.shields.io/badge/stars%20⭐-22-yellow)
 ![](https://img.shields.io/badge/days%20completed-11-red)
+[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 
 <!--- advent_readme_stars table --->
 ## 2021 Results
