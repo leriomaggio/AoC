@@ -1,6 +1,5 @@
 """ -- Advent of Code 2021 --
-Day 01:
-https://adventofcode.com/2021/day/1
+Day 01, https://adventofcode.com/2021/day/1
 
 Notes on Solutions:
 - Part 1: Uses the new `pairwise` function in itertools introduced in Python 3.10
