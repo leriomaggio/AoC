@@ -1,5 +1,12 @@
+"""Test Module for Puzzles in Day 03: Binary Diagnostic"""
+
+import logging
 from pathlib import Path
-from puzzle import part1, part2, load
+from pytest import fixture
+
+from puzzle import load, part1, part2
+
+LOGGER = logging.getLogger(__name__)
 
 EXAMPLE_DATA = """00100
 11110
@@ -15,27 +22,46 @@ EXAMPLE_DATA = """00100
 01010
 """
 
+from puzzle import __day__, __title__
 
-class TestPuzzle:
-    @staticmethod
-    def load_example_data():
-        return EXAMPLE_DATA.splitlines()
+LOGGER.warning(f"Test AoC21 Day {__day__}: {__title__}")
 
-    example_data = load_example_data()
 
-    def test_part1_example_data(self):
-        assert part1(self.example_data) == 198, "Part 1: Example data ❌"
+class AoCTest:
+    @fixture(scope="function")
+    def sample_input(self) -> list[int]:
+        LOGGER.info("Test Input")
+        return EXAMPLE_DATA.strip().splitlines()
 
-    def test_part2_example_data(self):
-        assert part2(self.example_data) == 230, "Part 2: Example data ❌"
+    @fixture(scope="function")
+    def game_input(self) -> list[int]:
+        LOGGER.info("Game Input")
+        return load(Path(__file__).with_name("input.03"))
 
-    def test_part1(self):
-        data = load(filepath=Path(__file__).with_name("input.txt"))
-        assert part1(data) == 3374136
 
-    def test_part2(self):
-        data = load(filepath=Path(__file__).with_name("input.txt"))
+# ------ Part 1 ------
+
+
+class TestPartOne(AoCTest):
+    def test_part1_on_sample_data(self, sample_input):
+        LOGGER.info(f"Part 1: Test Input")
+        assert part1(sample_input) == 198, f"Part 1 - Test Input ❌"
+
+    def test_part1_on_game_input(self, game_input):
+        LOGGER.info(f"Part 1: Game Input")
+        assert part1(game_input) == 3374136, f"Part 1 - Game Input ❌"
+
+
+# ----- Part 2 -----
+
+
+class TestPartTwo(AoCTest):
+    def test_part2_on_sample_data(self, sample_input):
+        LOGGER.info(f"Part 2: Test Input")
+        assert part2(sample_input) == 230, f"Part 2 - Test Input ❌"
+
+    def test_part2_on_game_input(self, game_input):
+        LOGGER.info(f"Part 2: Game Input")
         # Test all sequence of bits have the same length!
-        assert len(set(map(len, data))) == 1
-
-        assert part2(data) == 4432698
+        assert len(set(map(len, game_input))) == 1
+        assert part2(game_input) == 4432698, f"Part 2 - Game Input ❌"
