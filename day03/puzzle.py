@@ -66,8 +66,7 @@ if __name__ == "__main__":
     print("=*=*=*=*=*=*=*=*=*= Advent of Code 2021 =*=*=*=*=*=*=*=*=*=")
     print(f"Day {__day__}: {__title__}")
     print("-" * 59)
-    filepath = Path(__file__).with_name(f"input.{__day__}")
-    data = load(filepath=filepath)
+    data = load(filepath=Path(__file__).with_name(f"input.{__day__}"))
     # solve part 1
     print(part1(data))
     # solve part 2
