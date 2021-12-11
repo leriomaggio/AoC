@@ -2,11 +2,13 @@
 Day 03, https://adventofcode.com/2021/day/3
 
 Notes on Solutions:
-- Part 1: I've used [`getattr`](https://docs.python.org/3/library/functions.html#getattr) to dynamically
-          invoke methods from the `Submarine` class, as read from the input file. That's kinda cool.
-          I've always found Python _built-in_ reflective features quite fascinating!
-- Part 2: The whole point of `part2` is about _subclassing_. Why `dataclass`? Just becasuse they were
-         quicker to implement in this case.
+- Part 1: This part is all about calculating the `gamma_rate`, since the `epsilon_rate` is easily
+          determined as the _complement_ of the former. In fact, the `complement` (`lambda`) function
+          has been defined, using `mod 2` arithmentic. Also, `most_common_bits` function's implementation
+          uses the new _Walrus Operator_ in Python to define and use `ones` in one-liner.
+- Part 2: Not very much to say here apart maybe mentioning the use of the `f_bits` paramenter in the
+          `rate` function which allows to re-use the same implementation for both `oxygen` and `co2` rates.
+          (Default is the identity function)
 """
 
 __day__ = "03"
@@ -28,8 +30,7 @@ def load(filepath: Union[str, Path]) -> list[str]:
 
 
 def most_common_bit(bits: str) -> str:
-    ones = len(list(filter(lambda b: b == "1", bits)))
-    zeros = len(bits) - ones
+    zeros = len(bits) - (ones := len(list(filter(lambda b: b == "1", bits))))
     return "1" if ones >= zeros else "0"
 
 
@@ -47,11 +48,12 @@ def part1(data: list[str]) -> int:
 
 def rate(diagnostics: list[str], f_bits: Callable[[str], str] = lambda b: b) -> str:
     nr_of_bits = len(diagnostics[0])
-    for i in range(nr_of_bits):
-        mcb = f_bits(most_common_bit([b[i] for b in diagnostics]))
-        diagnostics = list(filter(lambda b: b[i] == mcb, diagnostics))
+    for idx in range(nr_of_bits):
+        mcb = f_bits(most_common_bit([b[idx] for b in diagnostics]))
+        diagnostics = list(filter(lambda b: b[idx] == mcb, diagnostics))
         if len(diagnostics) == 1:
-            return diagnostics[0]
+            break
+    return diagnostics[0]
 
 
 def part2(data: list[str]) -> int:
