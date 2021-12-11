@@ -1,6 +1,12 @@
+"""Test Module for Puzzles in Day 04: Giant Squid"""
+
+import logging
 from pathlib import Path
-from puzzle import part1, part2, load
-from puzzle import Board
+from pytest import fixture
+
+from puzzle import load, part1, part2
+
+LOGGER = logging.getLogger(__name__)
 
 EXAMPLE_DATA = """7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
 
@@ -23,32 +29,49 @@ EXAMPLE_DATA = """7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,1
  2  0 12  3  7
 """
 
+from puzzle import __day__, __title__
 
-class TestPuzzle:
-    @staticmethod
-    def load_example_data():
+LOGGER.warning(f"Test AoC21 Day {__day__}: {__title__}")
+
+
+class AoCTest:
+    @fixture(scope="function")
+    def sample_input(self) -> list[int]:
+        LOGGER.info("Test Input")
         return load(EXAMPLE_DATA.strip().splitlines())
 
-    test_numbers, test_boards = load_example_data()
+    @fixture(scope="function")
+    def game_input(self) -> list[int]:
+        LOGGER.info("Game Input")
+        filepath = Path(__file__).with_name(f"input.{__day__}")
+        return load(open(filepath).read().strip().splitlines())
 
-    def test_part1_example_data(self):
-        assert (
-            part1(self.test_numbers, self.test_boards) == 4512
-        ), "Part 1: Example data ❌"
 
-    def test_part2_example_data(self):
-        assert (
-            part2(self.test_numbers, self.test_boards) == 1924
-        ), "Part 1: Example data ❌"
+# ------ Part 1 ------
 
-    def test_part1(self):
-        numbers, boards = load(
-            open(Path(__file__).with_name("input.txt")).read().strip().splitlines()
-        )
-        assert part1(numbers, boards) == 49686
 
-    def test_part2(self):
-        numbers, boards = load(
-            open(Path(__file__).with_name("input.txt")).read().strip().splitlines()
-        )
-        assert part2(numbers, boards) == 26878
+class TestPartOne(AoCTest):
+    def test_part1_on_sample_data(self, sample_input):
+        LOGGER.info(f"Part 1: Test Input")
+        numbers, boards = sample_input
+        assert part1(numbers, boards) == 4512, f"Part 1 - Test Input ❌"
+
+    def test_part1_on_game_input(self, game_input):
+        LOGGER.info(f"Part 1: Game Input")
+        numbers, boards = game_input
+        assert part1(numbers, boards) == 49686, f"Part 1 - Game Input ❌"
+
+
+# ----- Part 2 -----
+
+
+class TestPartTwo(AoCTest):
+    def test_part2_on_sample_data(self, sample_input):
+        LOGGER.info(f"Part 2: Test Input")
+        numbers, boards = sample_input
+        assert part2(numbers, boards) == 1924, f"Part 2 - Test Input ❌"
+
+    def test_part2_on_game_input(self, game_input):
+        LOGGER.info(f"Part 2: Game Input")
+        numbers, boards = game_input
+        assert part2(numbers, boards) == 26878, f"Part 2 - Game Input ❌"
