@@ -1,15 +1,26 @@
-# -- Advent of Code 2021 --
-# Day 02: Dive
-# https://adventofcode.com/2021/day/s
+""" -- Advent of Code 2021 --
+Day 01:
+https://adventofcode.com/2021/day/1
+
+Notes on Solutions:
+- Part 1: I've used [`getattr`](https://docs.python.org/3/library/functions.html#getattr) to dynamically
+          invoke methods from the `Submarine` class, as read from the input file. That's kinda cool.
+          I've always found Python _built-in_ reflective features quite fascinating!
+- Part 2: The whole point of `part2` is about _subclassing_. Why `dataclass`? Just becasuse they were
+         quicker to implement in this case.
+"""
+
+__day__ = "02"
+__title__ = "Dive"
+__author__ = "leriomaggio"
 
 from pathlib import Path
+from typing import Union
 from dataclasses import dataclass
 
 
-def load(filepath: str = "./input.txt"):
-    return list(
-        map(lambda l: tuple(l.split()), open(filepath).read().strip().splitlines())
-    )
+def load(lines: list[str]) -> list[tuple[str, str]]:
+    return list(map(lambda l: tuple(l.split()), lines))
 
 
 # =========== Part 1 ============
@@ -64,10 +75,10 @@ def part2(data: list[tuple[str, str]]) -> int:
 
 if __name__ == "__main__":
     print("=*=*=*=*=*=*=*=*=*= Advent of Code 2021 =*=*=*=*=*=*=*=*=*=")
-    print("Day 02: Dive")
+    print(f"Day {__day__}: {__title__}")
     print("-" * 59)
-    filepath = Path(__file__).with_name("input.txt")
-    data = load(filepath=filepath)
+    filepath = Path(__file__).with_name(f"input.{__day__}")
+    data = load(lines=open(filepath).read().strip().splitlines())
     # solve part 1
     print(part1(data))
     # solve part 2

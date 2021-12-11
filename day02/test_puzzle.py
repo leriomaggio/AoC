@@ -1,8 +1,14 @@
-from pathlib import Path
-from puzzle import part1, part2, load
+"""Test Module for Puzzles in Day 01: Sonar Swipe"""
 
-EXAMPLE_DATA = """
-forward 5
+import logging
+from pathlib import Path
+from pytest import fixture
+
+from puzzle import load, part1, part2
+
+LOGGER = logging.getLogger(__name__)
+
+EXAMPLE_DATA = """forward 5
 down 5
 forward 8
 up 3
@@ -11,23 +17,40 @@ forward 2
 """
 
 
-class TestPuzzle:
-    @staticmethod
-    def load_example_data():
-        return list(map(lambda l: tuple(l.split()), EXAMPLE_DATA.strip().splitlines()))
+class AoCTest:
+    @fixture(scope="function")
+    def sample_input(self) -> list[int]:
+        LOGGER.info("Test Input")
+        return load(EXAMPLE_DATA.splitlines())
 
-    example_data = load_example_data()
+    @fixture(scope="function")
+    def game_input(self) -> list[int]:
+        LOGGER.info("Game Input")
+        path = Path(__file__).with_name("input.02")
+        return load(lines=open(path).read().strip().splitlines())
 
-    def test_part1_example_data(self):
-        assert part1(self.example_data) == 150, "Part 1: Example data ❌"
 
-    def test_part2_example_data(self):
-        assert part2(self.example_data) == 900, "Part 2: Example data ❌"
+# ------ Part 1 ------
 
-    def test_part1(self):
-        data = load(filepath=Path(__file__).with_name("input.txt"))
-        assert part1(data) == 1524750
 
-    def test_part2(self):
-        data = load(filepath=Path(__file__).with_name("input.txt"))
-        assert part2(data) == 1592426537
+class TestPartOne(AoCTest):
+    def test_part1_on_sample_data(self, sample_input):
+        LOGGER.info(f"Part 1: Test Input")
+        assert part1(sample_input) == 150, f"Part 1 - Test Input ❌"
+
+    def test_part1_on_game_input(self, game_input):
+        LOGGER.info(f"Part 1: Game Input")
+        assert part1(game_input) == 1524750, f"Part 1 - Game Input ❌"
+
+
+# ----- Part 2 -----
+
+
+class TestPartTwo(AoCTest):
+    def test_part2_on_sample_data(self, sample_input):
+        LOGGER.info(f"Part 2: Test Input")
+        assert part2(sample_input) == 900, f"Part 2 - Test Input ❌"
+
+    def test_part2_on_game_input(self, game_input):
+        LOGGER.info(f"Part 2: Game Input")
+        assert part2(game_input) == 1592426537, f"Part 2 - Game Input ❌"
