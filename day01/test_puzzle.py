@@ -1,7 +1,12 @@
+"""Test Module for Puzzles in Day 01: Sonar Swipe"""
+
+import logging
 from pathlib import Path
+from pytest import fixture
 
 from puzzle import load, part1, part2
 
+LOGGER = logging.getLogger(__name__)
 
 EXAMPLE_DATA = """199
 200
@@ -16,20 +21,39 @@ EXAMPLE_DATA = """199
 """
 
 
-class TestPuzzle:
+class AoCTest:
+    @fixture(scope="function")
+    def sample_input(self) -> list[int]:
+        LOGGER.info("Test Input")
+        return list(map(int, EXAMPLE_DATA.splitlines()))
 
-    example_data = list(map(int, EXAMPLE_DATA.splitlines()))
+    @fixture(scope="function")
+    def game_input(self) -> list[int]:
+        LOGGER.info("Game Input")
+        return load(filepath=Path(__file__).with_name("input.txt"))
 
-    def test_part1_example_data(self):
-        assert part1(self.example_data) == 7, "Part 1: Example data ❌"
 
-    def test_part2_example_data(self):
-        assert part2(self.example_data) == 5, "Part 2: Example data ❌"
+# ------ Part 1 ------
 
-    def test_part1(self):
-        data = load(filepath=Path(__file__).with_name("input.txt"))
-        assert part1(data) == 1681
 
-    def test_part2(self):
-        data = load(filepath=Path(__file__).with_name("input.txt"))
-        assert part2(data) == 1704
+class TestPartOne(AoCTest):
+    def test_part1_on_sample_data(self, sample_input):
+        LOGGER.info(f"Part 1: Test Input")
+        assert part1(sample_input) == 7, f"Part 1 - Test Input ❌"
+
+    def test_part1_on_game_input(self, game_input):
+        LOGGER.info(f"Part 1: Game Input")
+        assert part1(game_input) == 1681, f"Part 1 - Game Input ❌"
+
+
+# ----- Part 2 -----
+
+
+class TestPartTwo(AoCTest):
+    def test_part2_on_sample_data(self, sample_input):
+        LOGGER.info(f"Part 2: Test Input")
+        assert part2(sample_input) == 5, f"Part 2 - Test Input ❌"
+
+    def test_part2_on_game_input(self, game_input):
+        LOGGER.info(f"Part 2: Game Input")
+        assert part2(game_input) == 1704, f"Part 2 - Game Input ❌"

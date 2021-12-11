@@ -1,6 +1,16 @@
-# -- Advent of Code 2021 -
-# Day 01: Sonar Sweep
-# https://adventofcode.com/2021/day/1
+""" -- Advent of Code 2021 --
+Day 01:
+https://adventofcode.com/2021/day/1
+
+Notes on Solutions:
+- Part 1: Uses the new `pairwise` function in itertools introduced in Python 3.10
+- Part 2: Uses a sliding window function whose implementation has been borrowed from the 
+          wonderful [`more-itertools`](https://pypi.org/project/more-itertools/) Python package
+"""
+
+__day__ = "01"
+__title__ = "Sonar Sweep"
+__author__ = "leriomaggio"
 
 from itertools import pairwise
 from pathlib import Path
@@ -51,7 +61,7 @@ def part2(data: list[int]) -> int:
 
 if __name__ == "__main__":
     print("=*=*=*=*=*=*=*=*=*= Advent of Code 2021 =*=*=*=*=*=*=*=*=*=")
-    print("Day 01: Sonar Sweep")
+    print(f"Day {__day__}: {__title__}")
     print("-" * 59)
     filepath = Path(__file__).with_name("input.txt")
     data = load(filepath=filepath)
