@@ -1,10 +1,11 @@
-"""Test Module for Puzzles in Day 01: Sonar Swipe"""
+"""Test Module for Puzzles in Day 01: Sonar Sweep"""
 
 import logging
 from pathlib import Path
 from pytest import fixture
 
 from puzzle import load, part1, part2
+from puzzle import __day__, __title__
 
 LOGGER = logging.getLogger(__name__)
 
@@ -19,6 +20,8 @@ EXAMPLE_DATA = """199
 260
 263
 """
+
+LOGGER.warning(f"Test AoC21 Day {__day__}: {__title__}")
 
 
 class AoCTest:
