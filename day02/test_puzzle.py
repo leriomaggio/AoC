@@ -1,4 +1,4 @@
-"""Test Module for Puzzles in Day 01: Sonar Swipe"""
+"""Test Module for Puzzles in Day 02: Dive"""
 
 import logging
 from pathlib import Path
