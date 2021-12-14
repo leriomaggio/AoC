@@ -12,7 +12,7 @@ Meanwhile, here is a random joke 😂
 
 
 
-![](https://img.shields.io/badge/day%20📅-13-blue)
+![](https://img.shields.io/badge/day%20📅-14-blue)
 ![](https://img.shields.io/badge/stars%20⭐-26-yellow)
 ![](https://img.shields.io/badge/days%20completed-13-red)
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
