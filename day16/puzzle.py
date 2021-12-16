@@ -86,7 +86,7 @@ class Decoder:
             _, self.value = self._decode(bin_msg)
         return self.value
 
-    def _decode_literal_packet(self, message: str) -> tuple[int, int]:
+    def _decode_literal_packet(self, message: str) -> tuple[str, int]:
         bin_literal = "".join(
             map(
                 lambda i: message[i + 1 : i + 5],
@@ -98,7 +98,7 @@ class Decoder:
 
     def _decode_operator_packet(
         self, message: str, packet_type: int
-    ) -> tuple[int, int]:
+    ) -> tuple[str, int]:
         length_type_bit = int(message[0], base=2)
         packet_values = list()
         if length_type_bit == 0:
@@ -116,7 +116,7 @@ class Decoder:
         # eval
         return message, self.OPERATOR_MAP[packet_type](packet_values)
 
-    def _decode(self, message: str) -> tuple[int, int]:
+    def _decode(self, message: str) -> tuple[str, int]:
         packet_version = int(message[0:3], base=2)
         packet_type_ = int(message[3:6], base=2)
         self.versions.append(packet_version)
