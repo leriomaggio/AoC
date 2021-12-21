@@ -52,29 +52,6 @@ class Decoder:
         7: lambda values: 1 if values[0] == values[1] else 0,
     }
 
-    DEC_2_HEX = {
-        k: v
-        for k, v in map(
-            lambda l: l.strip().split(" = "),
-            """0 = 0000
-                   1 = 0001
-                   2 = 0010
-                   3 = 0011
-                   4 = 0100
-                   5 = 0101
-                   6 = 0110
-                   7 = 0111
-                   8 = 1000
-                   9 = 1001
-                   A = 1010
-                   B = 1011
-                   C = 1100
-                   D = 1101
-                   E = 1110
-                   F = 1111""".strip().splitlines(),
-        )
-    }
-
     def __init__(self, msg: str):
         self.msg = msg
         self.versions: list[str] = list()
@@ -82,7 +59,9 @@ class Decoder:
 
     def decode(self):
         if self.value < 0:  # this is to avoid decoding the same message multiple times
-            bin_msg = "".join(map(lambda c: self.DEC_2_HEX[c], self.msg))
+            bin_msg = "".join(
+                map(lambda c: str(bin(int(c, base=16)))[2:].zfill(4), self.msg)
+            )
             _, self.value = self._decode(bin_msg)
         return self.value
 
