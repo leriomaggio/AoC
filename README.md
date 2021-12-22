@@ -12,9 +12,9 @@ Meanwhile, here is a random joke 😂
 
 
 
-![](https://img.shields.io/badge/day%20📅-21-blue)
-![](https://img.shields.io/badge/stars%20⭐-42-yellow)
-![](https://img.shields.io/badge/days%20completed-21-red)
+![](https://img.shields.io/badge/day%20📅-22-blue)
+![](https://img.shields.io/badge/stars%20⭐-44-yellow)
+![](https://img.shields.io/badge/days%20completed-22-red)
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 
 <!--- advent_readme_stars table --->
@@ -43,4 +43,5 @@ Meanwhile, here is a random joke 😂
 | [Day 19](https://adventofcode.com/2021/day/19) | ⭐ | ⭐ |
 | [Day 20](https://adventofcode.com/2021/day/20) | ⭐ | ⭐ |
 | [Day 21](https://adventofcode.com/2021/day/21) | ⭐ | ⭐ |
+| [Day 22](https://adventofcode.com/2021/day/22) | ⭐ | ⭐ |
 <!--- advent_readme_stars table --->
