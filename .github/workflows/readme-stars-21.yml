@@ -14,6 +14,8 @@ jobs:
           userId: 1604942
           leaderboardId: 712382
           sessionCookie: ${{ secrets.AOC_SESSION }}
+          readmeLocation: aoc2021/README.md
+          year: 2021
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Update README stars
