@@ -59,8 +59,7 @@ class Entry:
 
     def __iter__(self):
         for subtree in self._nodes:
-            for n in subtree:
-                yield n
+            yield from subtree
         yield self
 
     def __getitem__(self, label):
