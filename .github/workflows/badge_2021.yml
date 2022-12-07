@@ -1,4 +1,4 @@
-name: Update AoC Badges
+name: Update AoC Badges AoC21
 on:
   schedule: # run workflow based on schedule
     - cron: "51 */4 * * *"
