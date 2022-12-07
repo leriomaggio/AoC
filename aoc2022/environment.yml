@@ -1,0 +1,10 @@
+name: aoc22
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - black=22.10.0
+  - ipython=8.7.0
+  - pip=22.3.1
+  - pytest=7.2.0
+  - python=3.11.0
