@@ -12,9 +12,9 @@ Meanwhile, here is a random joke 😂
 
 
 
-![](https://img.shields.io/badge/day%20📅-24-blue)
-![](https://img.shields.io/badge/stars%20⭐-50-yellow)
-![](https://img.shields.io/badge/days%20completed-25-red)
+![](https://img.shields.io/badge/day%20📅-7-blue)
+![](https://img.shields.io/badge/stars%20⭐-14-yellow)
+![](https://img.shields.io/badge/days%20completed-7-red)
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 
 <!--- advent_readme_stars table --->
