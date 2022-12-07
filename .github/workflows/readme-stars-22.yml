@@ -14,7 +14,7 @@ jobs:
           userId: 1604942
           leaderboardId: 962290
           sessionCookie: ${{ secrets.AOC_SESSION_22 }}
-          readmeLocation: aoc2021/README.md
+          readmeLocation: aoc2022/README.md
           year: 2022
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
