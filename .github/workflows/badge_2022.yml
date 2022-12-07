@@ -1,0 +1,21 @@
+name: Update AoC Badges
+on:
+  schedule: # run workflow based on schedule
+    - cron: "51 */4 * * *"
+
+  workflow_dispatch: # allow to manually start the workflow
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 # clones your repo
+      - uses: joblo2213/aoc-badges-action@v3
+        with:
+          userid: 1604942 # your user id, see setup on how to obtain
+          session: ${{ secrets.AOC_SESSION }} # secret containing session code, see setup on how to obtain
+          year: 2022
+      - uses: stefanzweifel/git-auto-commit-action@v4 # Step that pushes these local changes back to your github repo
+        with:
+          commit_message: Update badges
+          file_pattern: README.md
