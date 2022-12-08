@@ -12,8 +12,8 @@ __author__ = "leriomaggio"
 
 from typing import Union
 from pathlib import Path
-from typing import Generator
-from itertools import takewhile, product
+from typing import Generator, Iterable
+from itertools import takewhile, product, tee
 from math import sqrt, prod
 
 
@@ -26,25 +26,25 @@ def load(filepath: Union[str, Path]) -> list[list[int]]:
 
 def explore(
     trees: list[list[int]], row: int, col: int
-) -> Generator[tuple[list[int], list[int]], None, None]:
+) -> Generator[tuple[Iterable[int], Iterable[int]], None, None]:
     n_rows, n_cols = len(trees), len(trees[0])
     directions = product(
         zip(("row", "col"), (row, col), (n_rows, n_cols)), (True, False)
     )
     for (axis, dim, limit), reverse in directions:
         coords = reversed(range(0, dim)) if reverse else range(dim + 1, limit)
-        neighbours = list(
+        neighbours_1, neighbours_2 = tee(
             map(lambda c: (row, c) if axis == "col" else (c, col), coords)
         )
-        shorter_trees = list(
-            takewhile(lambda c: trees[c[0]][c[1]] < trees[row][col], neighbours)
+        shorter_trees = takewhile(
+            lambda c: trees[c[0]][c[1]] < trees[row][col], neighbours_2
         )
-        yield neighbours, shorter_trees
+        yield neighbours_1, shorter_trees
 
 
 def is_visible(trees: list[list[int]], row: int, col: int) -> bool:
     return any(
-        len(neighbours) == len(shorter_trees)
+        len(list(neighbours)) == len(list(shorter_trees))
         for neighbours, shorter_trees in explore(trees, row, col)
     )
 
@@ -60,8 +60,8 @@ def part1(data: list[list[int]]) -> int:
 
 def scenic_cone(trees, row: int, col: int) -> int:
     return prod(
-        len(shorter_trees)
-        + (fringe := 1 if len(shorter_trees) < len(neighbours) else 0)
+        len(st := list(shorter_trees))
+        + (fringe := 1 if len(st) < len(list(neighbours)) else 0)
         for neighbours, shorter_trees in explore(trees, row, col)
     )
 
