@@ -17,7 +17,7 @@ The timing of operations is automatically managed via the yield
 operators, along with self contained (private, i.e. _xx) methods that
 handle the ops atomically.
 In more details:
-- _draw manages the on screen operations
+- _draw manages the on CRRT operations
 - _tick manages the clock tick.
 
 Public OPs (`noop` and `addx`) leverages on atomic internal ops
@@ -41,12 +41,12 @@ def load(filepath: Union[str, Path]) -> list[str]:
 
 class CPU:
 
-    SCREEN_ROWS = 40
+    CRT_ROWS = 40
 
     def __init__(self) -> None:
         self.clock = 1
         self.sprite = 1
-        self.screen = ""
+        self.crt = ""
         self.signal_strength = 0
 
     def read(self):
@@ -56,16 +56,14 @@ class CPU:
             op, *value = instruction.split()
             for tick in getattr(self, op)(value):
                 yield tick
-                if self.clock % self.SCREEN_ROWS == (self.SCREEN_ROWS / 2):
+                if self.clock % self.CRT_ROWS == (self.CRT_ROWS / 2):
                     self.signal_strength += self.clock * self.sprite
 
     def _draw(self):
-        position = (self.clock - 1) % self.SCREEN_ROWS
-        self.screen += (
-            "#" if position in range(self.sprite - 1, self.sprite + 2) else "."
-        )
-        if position == self.SCREEN_ROWS - 1:
-            self.screen += "\n"
+        position = (self.clock - 1) % self.CRT_ROWS
+        self.crt += "#" if position in range(self.sprite - 1, self.sprite + 2) else "."
+        if position == self.CRT_ROWS - 1:
+            self.crt += "\n"
 
     def _tick(self):
         self._draw()
@@ -83,33 +81,31 @@ class CPU:
         yield self.clock
 
 
+def parse(instructions: list[str]) -> CPU:
+    cpu = CPU()
+    tape = cpu.read()
+    for instruction in instructions:
+        while next(tape):
+            pass  # noop
+        tape.send(instruction)
+    return cpu
+
+
 # =========== Part 1 ============
 
 
 def part1(data: list[str]) -> int:
-    cpu = CPU()
-    tape = cpu.read()
-    next(tape)
-    for line in data:
-        tick = tape.send(line)
-        while next(tape):
-            pass  # noop
+    cpu = parse(data)
     return cpu.signal_strength
 
 
 # =========== Part 2 ============
 
 
-def part2(data: list[int]) -> int:
-    cpu = CPU()
-    tape = cpu.read()
-    next(tape)
-    for line in data:
-        tick = tape.send(line)
-        while next(tape):
-            pass  # noop
-    print(cpu.screen)
-    return len(cpu.screen)  # only for tests to pass
+def part2(data: list[str]) -> int:
+    cpu = parse(data)
+    print(cpu.crt)
+    return len(cpu.crt)  # only for tests to pass
 
 
 if __name__ == "__main__":
