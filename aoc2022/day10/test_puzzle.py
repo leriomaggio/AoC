@@ -191,8 +191,8 @@ class TestPartOne(AoCTest):
 class TestPartTwo(AoCTest):
     def test_part2_on_sample_data(self, sample_input):
         LOGGER.info(f"Part 2: Test Input")
-        assert part2(sample_input) == 13140, f"Part 2 - Test Input ❌"
+        assert part2(sample_input) == 246, f"Part 2 - Test Input ❌"
 
     def test_part2_on_game_input(self, game_input):
         LOGGER.info(f"Part 2: Game Input")
-        assert part2(game_input) == 13180, f"Part 2 - Game Input ❌"
+        assert part2(game_input) == 246, f"Part 2 - Game Input ❌"

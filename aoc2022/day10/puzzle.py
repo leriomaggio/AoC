@@ -109,7 +109,7 @@ def part2(data: list[int]) -> int:
         while next(tape):
             pass  # noop
     print(cpu.screen)
-    return cpu.signal_strength  # only for tests to pass
+    return len(cpu.screen)  # only for tests to pass
 
 
 if __name__ == "__main__":
