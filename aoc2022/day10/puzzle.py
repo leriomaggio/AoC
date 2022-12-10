@@ -1,5 +1,5 @@
 """ -- Advent of Code 2022 --
-Day XX, https://adventofcode.com/2022/day/10
+Day 10, https://adventofcode.com/2022/day/10
 
 Notes on Solutions:
 Having fun with Python generators.
