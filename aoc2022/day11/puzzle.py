@@ -52,12 +52,6 @@ class Monkey:
     def catch_item(self, item):
         self.items.append(item)
 
-    def __repr__(self) -> str:
-        return str(self)
-
-    def __str__(self) -> str:
-        return f"Monkey: {self.items}; {self._worry_expr}; {self.divisible_by}; {self._mates}"
-
 
 def load(filepath: Union[str, Path]) -> list[Monkey]:
     return parse(open(filepath).read())
