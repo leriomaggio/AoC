@@ -5,10 +5,11 @@ Notes on Solutions:
 - Part 1: This is quite straightforward, and does not require any particular adjustment
 in the first attempt.
 - Part 2: The solution to this part generalises the whole game by realising one important
-thing: the whole game with monkeys is based on divisibility of items.
-Since we have no `relief_factor` in this part, the **only** possible consideration that
-we can derive to avoid our stress level going to the roof is that worry level of items
-could never go beyon the product of all divisors.
+thing: the whole game with monkeys is a game of "divisibility".
+Hence, since the number of monkeys (and so divisors is finite), we could bound the game to
+the product of all unique divisors in the monkey sets.
+By doing so, we avoid our stress level going to the roof, and most importantly, we make
+the game tractable (i.e. converging in finite time).
 """
 
 __day__ = "11"
