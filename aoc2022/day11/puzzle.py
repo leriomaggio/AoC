@@ -4,7 +4,8 @@ Day 11, https://adventofcode.com/2022/day/11
 Notes on Solutions:
 - Part 1: This is quite straightforward, and does not require any particular adjustment
 in the first attempt.
-- Part 2: The solution to this part generalises the whole game by realising one important thing: the whole game with monkeys is based on divisibility of items.
+- Part 2: The solution to this part generalises the whole game by realising one important
+thing: the whole game with monkeys is based on divisibility of items.
 Since we have no `relief_factor` in this part, the **only** possible consideration that
 we can derive to avoid our stress level going to the roof is that worry level of items
 could never go beyon the product of all divisors.
