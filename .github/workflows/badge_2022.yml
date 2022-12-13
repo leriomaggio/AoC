@@ -15,6 +15,7 @@ jobs:
           userid: 1604942 # your user id, see setup on how to obtain
           session: ${{ secrets.AOC_SESSION_22 }} # secret containing session code, see setup on how to obtain
           year: 2022
+          leaderboard: "https://adventofcode.com/2022/leaderboard/private/view/962290.json"
           file: "aoc2022/README.md"
           dayRegex: '(?<=https:\/\/img\.shields\.io\/badge\/day%20📅-)[0-9]+(?=-blue)'
           starsRegex: '(?<=https:\/\/img\.shields\.io\/badge\/stars%20⭐-)[0-9]+(?=-yellow)'
