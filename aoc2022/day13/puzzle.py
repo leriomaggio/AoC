@@ -1,5 +1,5 @@
 """ -- Advent of Code 2022 --
-Day XX, https://adventofcode.com/2022/day/13
+Day 13, https://adventofcode.com/2022/day/13
 
 Notes on Solutions:
 The core of the solutions for both parts is the `compare_packets` (recursive) function.
