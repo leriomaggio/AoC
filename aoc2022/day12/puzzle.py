@@ -2,8 +2,14 @@
 Day 12, https://adventofcode.com/2022/day/12
 
 Notes on Solutions:
-- Part 1: 
-- Part 2: 
+The core of the solutions for the two parts lies in the `traverse` function, 
+which simply implements a BFS visit on a graph, with a twist.
+The twist is the added bounding criterion on the search, which consider the heights
+of the vertices during the traversal.
+
+- Part 1: Simple implementation of the BFS from Source to Target (modified so that S ="a" and E = "z")
+- Part 2: BFS traverse in reverse mode: therefore, we start from E (destination in part 1) and we bound the search
+as soon as an "a" has been found!
 """
 
 __day__ = "12"
@@ -20,19 +26,17 @@ def load(filepath: Union[str, Path]):
 
 
 def parse_input(data: str) -> list[list[str]]:
-    return [list(l) for l in data.strip().split("\n")]
-
-
-def source_target_coords(
-    maze: list[list[str]],
-) -> tuple[tuple[int, int], tuple[int, int]]:
-    for r, row in enumerate(maze):
+    grid = [list(l) for l in data.strip().split("\n")]
+    for r, row in enumerate(grid):
         for c, item in enumerate(row):
             if item == "S":
                 s_coords = (r, c)
             if item == "E":
                 e_coords = (r, c)
-    return s_coords, e_coords
+            grid[r][c] = (
+                ord("a") if item == "S" else ord("z") if item == "E" else ord(item)
+            )
+    return grid, s_coords, e_coords
 
 
 def is_within(coord: tuple[int, int], boundaries: tuple[int, int]) -> bool:
@@ -56,12 +60,10 @@ def traverse(
     while fringe:
         d, r, c = fringe.popleft()
         for nr, nc in filter(
-            lambda cc: cc not in visited,
+            lambda cc: is_within(cc, (H, W)) and cc not in visited,
             [(r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1)],
         ):
-            if not (is_within((nr, nc), (H, W))) or bounding(
-                ord(maze[nr][nc]), ord(maze[r][c])
-            ):
+            if bounding(maze[nr][nc], maze[r][c]):
                 continue
             if destination(nr, nc):
                 return d + 1
@@ -72,19 +74,15 @@ def traverse(
 # =========== Part 1 ============
 
 
-def part1(data: list[int]) -> int:
-    S, E = source_target_coords(maze=data)
-    maze = [["a" if e == "S" else "z" if e == "E" else e for e in row] for row in data]
-    return traverse(maze, S, E)
+def part1(data: tuple[list, tuple, tuple]) -> int:
+    return traverse(*data)
 
 
 # # =========== Part 2 ============
 
 
-def part2(data: list[int]) -> int:
-    S, E = source_target_coords(maze=data)
-    maze = [["a" if e == "S" else "z" if e == "E" else e for e in row] for row in data]
-    return traverse(maze, S, E, reverse=True)
+def part2(data: tuple[list, tuple, tuple]) -> int:
+    return traverse(*data, reverse=True)
 
 
 if __name__ == "__main__":
