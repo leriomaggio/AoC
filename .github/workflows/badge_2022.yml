@@ -16,6 +16,9 @@ jobs:
           session: ${{ secrets.AOC_SESSION_22 }} # secret containing session code, see setup on how to obtain
           year: 2022
           file: "aoc2022/README.md"
+          dayRegex: '(?<=https:\/\/img\.shields\.io\/badge\/day%20📅-)[0-9]+(?=-blue)'
+          starsRegex: '(?<=https:\/\/img\.shields\.io\/badge\/stars%20⭐-)[0-9]+(?=-yellow)'
+          daysCompletedRegex: '(?<=https:\/\/img\.shields\.io\/badge\/days%20completed-)[0-9]+(?=-red)'
       - uses: stefanzweifel/git-auto-commit-action@v4 # Step that pushes these local changes back to your github repo
         with:
           commit_message: Update badges
