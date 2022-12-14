@@ -2,6 +2,7 @@
 Day 14 , https://adventofcode.com/2022/day/14
 
 Notes on Solutions:
+Using complex numbers to represent 2D coordinates!
 - Part 1: 
 - Part 2: 
 """
@@ -29,7 +30,7 @@ def parse_input(data: list[str]) -> list[tuple[tuple[int, int]]]:
 
 
 def trace(scans: list[tuple[tuple[int, int]]]):
-    rocks, pit = set(), 0
+    rocks, pit = set(), -1
     for paths in scans:
         for (x1, y1), (x2, y2) in zip(paths, paths[1:]):
             (x1, x2), (y1, y2) = sorted((x1, x2)), sorted((y1, y2))
