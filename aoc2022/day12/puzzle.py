@@ -2,7 +2,7 @@
 Day 12, https://adventofcode.com/2022/day/12
 
 Notes on Solutions:
-The core of the solutions for the two parts lies in the `traverse` function, 
+The core of the solutions for the two parts lies in the `traverse` function,
 which simply implements a BFS visit on a graph, with a twist.
 The twist is the added bounding criterion on the search, which consider the heights
 of the vertices during the traversal.
