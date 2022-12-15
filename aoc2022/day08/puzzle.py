@@ -2,8 +2,23 @@
 Day 08, https://adventofcode.com/2022/day/8
 
 Notes on Solutions:
-- Part 1: 
-- Part 2: 
+The core of the two solutions is the `explore` function which generates the
+neightbourhood and all the found shorter_tree, given a pair of coordinates.
+
+Since it's all based on generators and lazy-sequence, we use `itertools.tee`
+to generate two independent iterators on the neighbourhood. One to be returned,
+the second one to be filtered looking for shorter_trees
+(using `itertools.takewhile`).
+
+- Part 1: Leveraging `explore`, part1 will simply sum how many times, for all
+the possible nodes (i.e. coords), all trees in the neighbourhood are shorter
+(and so it is visible)
+
+- Part 2: In a very similar fashion, in part 2 we calculate the product of all
+the shortest tree + 1 (i.e. the fringe) if the number of shorter_trees is not the
+whole neighbourhood. The reason for this, is because the text of the puzzle
+considers also trees with the **same** height, whereas the filter in `explore`
+(i.e. `takewhile`) only consider shorter trees.
 """
 
 __day__ = "08"
@@ -14,7 +29,7 @@ from typing import Union
 from pathlib import Path
 from typing import Generator, Iterable
 from itertools import takewhile, product, tee
-from math import sqrt, prod
+from math import prod
 
 
 def load(filepath: Union[str, Path]) -> list[list[int]]:
