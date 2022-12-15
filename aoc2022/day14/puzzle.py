@@ -2,9 +2,22 @@
 Day 14 , https://adventofcode.com/2022/day/14
 
 Notes on Solutions:
-Using complex numbers to represent 2D coordinates!
-- Part 1: 
-- Part 2: 
+They key (and also, the trick I learnt with this exercise is to use Python complex
+numbers to represent 2D coordinates! In this way, we could easily check specific
+axis (i.e. accessing `.real` and `.imag` for `x` and `y`, respectively), as well
+as generating neighbourhood with simple arithmetic on the real and/or imaginary part.
+Just amazing!
+More details about this trick could be found here:ttps://erikw.me/blog/tech/advent-of-code-tricks/#grids
+
+The solutions to this puzzle are actually connected, and the code for the two parts
+is indeed the very same, but one parameter.
+- Part 1: We are interested in counting how many grains of salt fall down (according rocks found
+along the way, and the sliding strategy reported in the puzzle text).
+In P1 the pit is believed to be bottomless, therefore as soon as we exceed the known fringe in space
+(from input data) we can return - as we don't have notion of sands falling in the pit.
+
+- Part 2: In P2 we are adding some flooring to the pit, therefore we re-apply the same code for
+sand simulation of P1, and we return as soon as we have filled up the space.
 """
 
 __day__ = "14"
@@ -44,7 +57,9 @@ def trace(scans: list[tuple[tuple[int, int]]]):
 def fill(data, bottomless: bool = True, source: complex = 500) -> int:
     blocks, pit = trace(data)
     units = 0
-    while source not in blocks:  # fill up until the bottleneck (source) has been reached
+    while (
+        source not in blocks
+    ):  # fill up until the bottleneck (source) has been reached
         sand = source  # (500, 0)
         while True:
             if sand.imag >= pit:
