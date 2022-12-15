@@ -2,8 +2,26 @@
 Day 09, https://adventofcode.com/2022/day/9
 
 Notes on Solutions:
-- Part 1: 
-- Part 2: 
+With this puzzle, I hadn't still discovered the trick of using complex numbers (
+see solution to puzzle 14), therefore I am sticking with coordinates as tuples.
+Therefore, the first thing I need is a function to move the knots.
+This is `move` which simply implements the element-wise sum of tuples.
+
+Large caveat with my implementation: it is going to be very reliant on itertools
+and functional-style programming (intentionally, ed.)
+
+Similarly, `distance` and `neighbourhood` calculate the distance between head (H) and
+tail (T), and the neighbourhood of a pair of a generic pair of 2D coordinates, respectively.
+
+The `direction` function is an extension of the latter adding labels to each direction
+in the neighbourhood of given coordinates. This function will be leveraged to
+call the respective pre-assembled `partial(move)` function, towards the corresponding
+direction (according to instructions).
+
+To check if T is adjacent to H, we simply check it belongs to H's neighbourhood.
+
+Finally, we simulate the moves of H, and T inductively on each H-T pair with
+`knots=2` in part1, and `knots=10` in part2.
 """
 
 __day__ = "09"
