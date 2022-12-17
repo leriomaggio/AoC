@@ -1,5 +1,5 @@
 """ -- Advent of Code 2022 --
-Day 17, https://adventofcode.com/2022/day/XX
+Day 17, https://adventofcode.com/2022/day/17
 
 Notes on Solutions:
 The game is cyclic and repetitive (i.e. `itertools.cycle`),
