@@ -2,8 +2,43 @@
 Day 16, https://adventofcode.com/2022/day/16
 
 Notes on Solutions:
-- Part 1: 
-- Part 2: 
+This puzzle considers a maximum flow optimisation problem over a
+graph of interconnected valves.
+In particular, the solution to both puzzles considers a limited
+number of steps (i.e. minutes) to go from an input source node
+(i.e. "AA") so that the maximum flow (i.e. pressure) could be
+obtained.
+
+We will start therefore by processing the input, and storing
+all the "graph" infos within a custom `Graph` class.
+This class will be crucial for the `max_flow` [cached!] recursive
+function. Thanks to the fantastic "Python Data Model", we can create
+a custom `Graph` type which is `__hashable__` and therefore cache-able
+using the built-in `functools.cache` (conversely, plain dictionaries
+would be not!!)
+
+Crucial in this graph representation is the caculation of all distances
+within each valves (see `Graph.percolate_distances`) which
+leverages on the same rule|trick used in the Djikstra Shortest_parth
+algorithm, namely: the distance between each node is inductively 
+calculated as the minimum between the distance following the direct edge
+(u,v) and the length of the path with one op, i.e. d(u,k) + d(k,v)
+
+That being said, part 1 and part 2 are essentially identical except
+for one parameter (i.e. considering elephant or not), which
+essentially changes the base-case in the recursion.
+
+With no-elephant (part 1), we start with 30 mins and no-pressure.
+With elephant (part 2). we start at 26 mins, and the starting pressure
+is part1 at 26 mins (i.e. with no elephant).
+
+We will keep a `frozenset` (crucial for caching as immutable) of
+all the valves remained to open recursively (starting from all of those
+having any positive pressure rate).
+Then we will recursively explore any tunnel that is reachable within the
+time constraints, retaining the pressure as the maximum
+between the current_value, current_value + opening the valve, or
+following the _next_ tunnel.
 """
 
 __day__ = "16"
