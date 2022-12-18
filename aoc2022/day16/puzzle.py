@@ -50,7 +50,6 @@ from pathlib import Path
 from functools import cache
 from math import inf
 from collections import defaultdict
-from functools import cache
 
 
 class Graph:
