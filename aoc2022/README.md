@@ -9,9 +9,9 @@ Meanwhile, here is a random joke 😂
 ![Jokes Card](https://readme-jokes.vercel.app/api)
 
 
-![](https://img.shields.io/badge/day%20📅-18-blue)
-![](https://img.shields.io/badge/stars%20⭐-36-yellow)
-![](https://img.shields.io/badge/days%20completed-18-red)
+![](https://img.shields.io/badge/day%20📅-20-blue)
+![](https://img.shields.io/badge/stars%20⭐-38-yellow)
+![](https://img.shields.io/badge/days%20completed-19-red)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 
 <!--- advent_readme_stars table --->
@@ -37,4 +37,6 @@ Meanwhile, here is a random joke 😂
 | [Day 16](https://adventofcode.com/2022/day/16) | ⭐ | ⭐ |
 | [Day 17](https://adventofcode.com/2022/day/17) | ⭐ | ⭐ |
 | [Day 18](https://adventofcode.com/2022/day/18) | ⭐ | ⭐ |
+| [Day 19](https://adventofcode.com/2022/day/19) | ⭐ | ⭐ |
+| [Day 20](https://adventofcode.com/2022/day/20) | ⭐ | ⭐ |
 <!--- advent_readme_stars table --->
