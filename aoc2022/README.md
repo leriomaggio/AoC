@@ -9,9 +9,9 @@ Meanwhile, here is a random joke 😂
 ![Jokes Card](https://readme-jokes.vercel.app/api)
 
 
-![](https://img.shields.io/badge/day%20📅-23-blue)
-![](https://img.shields.io/badge/stars%20⭐-44-yellow)
-![](https://img.shields.io/badge/days%20completed-22-red)
+![](https://img.shields.io/badge/day%20📅-24-blue)
+![](https://img.shields.io/badge/stars%20⭐-46-yellow)
+![](https://img.shields.io/badge/days%20completed-23-red)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3100/)
 
 <!--- advent_readme_stars table --->
